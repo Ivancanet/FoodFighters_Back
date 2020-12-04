@@ -11,7 +11,7 @@ const path         = require('path');
 
 
 mongoose
-  .connect('mongodb://localhost/food-fighters-back', {useNewUrlParser: true})
+  .connect(`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.1b6hf.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
