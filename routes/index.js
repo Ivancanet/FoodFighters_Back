@@ -2,6 +2,7 @@ const express = require('express');
 const app = require('../app');
 const router = express.Router();
 const Admin = require('../models/Admin');
+const Wines = require('../models/Wines');
 
 //#region Home Page
 
@@ -22,6 +23,19 @@ router.get('/', (req, res, next) => {
 
 //#region Wines Page
 
+//Create a Wine
+router.post('/wine-create', (req, res, next) => {
+  const wine = req.body;
+  Wines.create(wine)
+  .then((result)=>{
+    res.send(result);
+  })
+  .catch((err)=>{
+    res.send(err);
+  })
+})
+
+
 //#endregion
 
 //#region Formations Page
@@ -40,47 +54,7 @@ router.get('/', (req, res, next) => {
 
 //#endregion
 
-//#region Admin Page (Log In)
-
-router.post('/admin', (req, res, next) => {
-
-  const { username, password } = req.body;
-
-  /* Test -->  */ //res.send(`Username: ${username}, Password: ${password}`);
-
-  Admin.findOne({ username })
-    .then((result => {
-
-      if (result){
-        password === result.password ? res.send('Loggged In') : res.send('Incorrect Password')
-      }
-      
-      
-    }))
-    .catch((err) => {
-      res.send(err);
-    })
-})
-
-//#endregion
 
 
-
-//#region Create admins (Only developer)
-
-//Post to create admins
-
-router.post('/new-user', (req, res, next) => {
-  Admin.create(req.body)
-    .then((result) => {
-      res.send(result)
-    })
-    .catch((err) => {
-      res.send(err)
-    });
-
-});
-
-//#endregion
 
 module.exports = router;
