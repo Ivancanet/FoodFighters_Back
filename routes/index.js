@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 
 //Create posts
 
-router.post('/posts-create', (req, res, next) => {
+router.post('/post/create', (req, res, next) => {
   const post = req.body;
   Posts.create(post)
     .then((result) => {
