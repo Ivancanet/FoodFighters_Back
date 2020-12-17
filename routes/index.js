@@ -111,7 +111,17 @@ router.post('/wines/create', (req, res, next) => {
 //#endregion
 
 //#region About us Page
-
+router.post('/post', (req, res, next) => {
+  const id = req.body.id;
+  console.log(id);
+  Posts.findById(id)
+    .then((posts) => {
+      res.send(posts);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
 //#endregion
 
 //#region Contact Page
