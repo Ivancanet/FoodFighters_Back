@@ -104,9 +104,30 @@ router.post('/wines/create', (req, res, next) => {
 
 //#region Formations Page
 
+router.get('/formation', (req,res,next)=>{
+  Posts.find({type: 'formation'})
+  .then((formations)=>{
+    res.send(formations);
+  })
+  .catch((err)=>{
+    res.send(err);
+  });
+
+});
 //#endregion
 
 //#region Experiencies Page
+
+router.get('/experiencie', (req,res,next)=>{
+  Posts.find({type: 'experiencie'})
+  .then((experiencies)=>{
+    res.send(experiencies);
+  })
+  .catch((err)=>{
+    res.send(err);
+  });
+
+});
 
 //#endregion
 
